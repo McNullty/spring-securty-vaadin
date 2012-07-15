@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jdbc  
+		http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	">
+
+	<!-- Ovo je Access Decision Manager koji zahtijeva da svi Voteri ili grantaju 
+		access ili su susdržani (abstain) -->
+	<bean class="org.springframework.security.access.vote.UnanimousBased"
+		id="unanimousBased">
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter" />
+				<ref bean="authenticatedVoter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Ovaj Voter će grantati access ako user ima bilo koju rolu -->
+	<bean class="org.springframework.security.access.vote.RoleVoter"
+		id="roleVoter" />
+	<bean class="org.springframework.security.access.vote.AuthenticatedVoter"
+		id="authenticatedVoter" />
+
+	<!-- Inicijaliziramo našu klasu za provjeru IP adrese u remember me cookiju. 
+		zakometrao sam postavljanje dependencija preko settera i promjenio da se 
+		postavlja preko kontruktora. <br/> Na kraju je izmjenjeno defaultno ime Cookiea -->
+	<bean
+		class="com.packtpub.springsecurity.security.IPTokenBasedRememberMeServices"
+		id="ipTokenBasedRememberMeServicesBean">
+		<constructor-arg name="key">
+			<value>jbcpPetStore-vaadin</value>
+		</constructor-arg>
+		<constructor-arg name="userDetailsService" ref="userService" />
+		<property name="parameter" value="_remember_me" />
+		<property name="cookieName" value="REMEMBER_ME" />
+	</bean>
+
+	<!-- Ovdje sam koristio Novu klasu iz Spring Securtya 3.1 zato jer je klasa 
+		koja se spominje u knjizi depricated -->
+	<bean id="userService"
+		class="org.springframework.security.provisioning.InMemoryUserDetailsManager">
+		<constructor-arg name="users">
+			<props>
+				<prop key="guest">guest,ROLE_USER</prop>
+			</props>
+		</constructor-arg>
+	</bean>
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.packtpub.springsecurity" />
+
+</beans>

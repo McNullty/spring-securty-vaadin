@@ -1,0 +1,21 @@
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.springframework.security" level="DEBUG" />
+	<logger name="org.springframework.web" level="DEBUG" />
+	<logger name="org.springframework" level="DEBUG" />
+	<logger name="org.springframework.jdbc" level="DEBUG" />
+	<logger name="org.springframework.beans.factory.xml" level="DEBUG" />
+	<logger name="com.packtpub" level="TRACE" />
+
+	<root level="debuf">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
