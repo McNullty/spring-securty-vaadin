@@ -15,6 +15,7 @@
 
 	<h1>Please Log In to Your Account</h1>
 	<p>Please use the form below to log in to your account.</p>
+	<p>Username: 'guest', initial Password: 'guest'</p>
 	<form action="/JBCPPets-vaadin/j_spring_security_check" method="post">
 		<label for="j_username">Login</label>: <input id="j_username"
 			name="j_username" size="20" maxlength="50" type="text" /> <br />
