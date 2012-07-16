@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Component;
 
+import com.packtpub.springsecurity.security.IChangePassword;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
@@ -28,8 +28,8 @@ public class ChangePasswordWindow extends Window {
 			.getLogger(ChangePasswordWindow.class);
 	private ChangePasswordView changePasswordView = new ChangePasswordView();
 
-//	@Autowired
-	private InMemoryUserDetailsManager userService;
+	@Autowired
+	private IChangePassword userService;
 
 	public ChangePasswordWindow() {
 		log.trace("Initialazing Change Password Window");

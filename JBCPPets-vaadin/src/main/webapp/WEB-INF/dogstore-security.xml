@@ -41,12 +41,14 @@
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider>
 			<!-- Authentikacija će se vršiti iz baze -->
-			<jdbc-user-service data-source-ref="dataSource" />
+			<jdbc-user-service data-source-ref="dataSource" id="userService"/>
 		</authentication-provider>
 	</authentication-manager>
 
 	<!-- Ch 4 In-memory HSQLDB -->
 	<jdbc:embedded-database id="dataSource" type="HSQL">
+		<!-- Inicijalizacija data sourcea -->
 		<jdbc:script location="classpath:security-schema.sql" />
+		<jdbc:script location="classpath:test-data.sql"/>
 	</jdbc:embedded-database>
 </beans:beans>

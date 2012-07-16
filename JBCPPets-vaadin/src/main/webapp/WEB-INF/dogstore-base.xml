@@ -10,6 +10,24 @@
 		http://www.springframework.org/schema/context/spring-context-3.1.xsd
 	">
 
+	<!-- Inicijaliziramo našu klasu za provjeru IP adrese u remember me cookiju. 
+		zakometrao sam postavljanje dependencija preko settera i promjenio da se 
+		postavlja preko kontruktora. <br/> Na kraju je izmjenjeno defaultno ime Cookiea -->
+	<bean
+		class="com.packtpub.springsecurity.security.IPTokenBasedRememberMeServices"
+		id="ipTokenBasedRememberMeServicesBean">
+		<constructor-arg name="key">
+			<value>jbcpPetStore-vaadin</value>
+		</constructor-arg>
+		<constructor-arg name="userDetailsService" ref="userService" />
+		<property name="parameter" value="_remember_me" />
+		<property name="cookieName" value="REMEMBER_ME" />
+	</bean>
+
+	<bean id="jdbcUserServiceCustom" class="com.packtpub.springsecurity.security.CustomJdbcDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
 	<context:annotation-config />
 	<context:component-scan base-package="com.packtpub.springsecurity" />
 

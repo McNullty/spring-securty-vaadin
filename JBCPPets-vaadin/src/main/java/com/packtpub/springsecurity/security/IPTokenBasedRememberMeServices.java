@@ -23,18 +23,6 @@ public class IPTokenBasedRememberMeServices extends
 
 	private static final ThreadLocal<HttpServletRequest> requestHolder = new ThreadLocal<HttpServletRequest>();
 
-	/**
-	 * Ovaj konstruktor sam morao dodati iako je depriceted u nadklasi jer nije
-	 * moglo inicijalizirati
-	 * 
-	 * TODO: ukloniti ovaj konstruktor i inicijalizaciju napraviti preko
-	 * konstruktora
-	 */
-	@SuppressWarnings("deprecation")
-	public IPTokenBasedRememberMeServices() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public IPTokenBasedRememberMeServices(String key,
 			UserDetailsService userDetailsService) {
 		super(key, userDetailsService);
