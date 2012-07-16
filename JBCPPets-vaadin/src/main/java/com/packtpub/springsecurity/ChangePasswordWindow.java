@@ -28,7 +28,7 @@ public class ChangePasswordWindow extends Window {
 			.getLogger(ChangePasswordWindow.class);
 	private ChangePasswordView changePasswordView = new ChangePasswordView();
 
-	@Autowired
+//	@Autowired
 	private InMemoryUserDetailsManager userService;
 
 	public ChangePasswordWindow() {
