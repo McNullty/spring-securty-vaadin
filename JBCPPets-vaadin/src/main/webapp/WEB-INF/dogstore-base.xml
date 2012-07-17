@@ -19,15 +19,15 @@
 		<constructor-arg name="key">
 			<value>jbcpPetStore-vaadin</value>
 		</constructor-arg>
-		<constructor-arg name="userDetailsService" ref="userService" />
+		<constructor-arg name="userDetailsService" ref="jdbcUserService" />
 		<property name="parameter" value="_remember_me" />
 		<property name="cookieName" value="REMEMBER_ME" />
 	</bean>
-	
-	<bean id="jdbcUserService"
-	class="org.springframework.security.provisioning.JdbcUserDetailsManager">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="authenticationManager" ref="authenticationManager"/>
+
+	<bean id="jdbcUserService" class="com.packtpub.springsecurity.security.CustomJdbcDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="enableGroups" value="true" />
+		<property name="enableAuthorities" value="false" />
 	</bean>
 
 	<context:annotation-config />

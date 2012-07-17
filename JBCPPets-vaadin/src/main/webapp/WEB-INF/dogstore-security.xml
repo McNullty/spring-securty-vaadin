@@ -38,15 +38,13 @@
 	<!-- <debug/> -->
 
 	<authentication-manager alias="authenticationManager">
-		<authentication-provider>
-			<jdbc-user-service data-source-ref="dataSource" id="userService" />
-		</authentication-provider>
+		<authentication-provider user-service-ref="jdbcUserService"/>
 	</authentication-manager>
 
 	<!-- Ch 4 In-memory HSQLDB -->
 	<jdbc:embedded-database id="dataSource" type="HSQL">
 		<!-- Inicijalizacija data sourcea -->
 		<jdbc:script location="classpath:sql-scripts/security-schema.sql" />
-		<jdbc:script location="classpath:sql-scripts/test-data.sql" />
+		<jdbc:script location="classpath:sql-scripts/test-users-groups-data.sql" />
 	</jdbc:embedded-database>
 </beans:beans>
