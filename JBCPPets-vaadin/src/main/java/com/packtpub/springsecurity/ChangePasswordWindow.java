@@ -6,11 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Component;
 
-import com.packtpub.springsecurity.security.IChangePassword;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
@@ -29,7 +29,8 @@ public class ChangePasswordWindow extends Window {
 	private ChangePasswordView changePasswordView = new ChangePasswordView();
 
 	@Autowired
-	private IChangePassword userService;
+	@Qualifier("jdbcUserService")
+	private UserDetailsManager userDetailsManager;
 
 	public ChangePasswordWindow() {
 		log.trace("Initialazing Change Password Window");
@@ -59,19 +60,13 @@ public class ChangePasswordWindow extends Window {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				log.trace("Changeing password");
-				Object principal = SecurityContextHolder.getContext()
-						.getAuthentication().getPrincipal();
-				String username = principal.toString();
-				log.trace("Principal.toString: {}", username);
-
-				if (principal instanceof UserDetails) {
-					username = ((UserDetails) principal).getUsername();
-				}
+				String oldPassword = changePasswordView.getOldPasswordValue();
 
 				String newPassword = changePasswordView.getNewPasswordValue();
 				log.trace("New password: {}", newPassword);
 
-				userService.changePassword(username, newPassword);
+				// TODO: dodati obradu iznimke ako stara lozinka ne odgovara
+				userDetailsManager.changePassword(oldPassword, newPassword);
 				SecurityContextHolder.clearContext();
 
 				// TODO: ovo bih zamijenio s getApplication().init;
