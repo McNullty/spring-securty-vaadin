@@ -38,7 +38,11 @@
 	<!-- <debug/> -->
 
 	<authentication-manager alias="authenticationManager">
-		<authentication-provider user-service-ref="jdbcUserService"/>
+		<authentication-provider user-service-ref="jdbcUserService">
+			<password-encoder ref="passwordEncoder">
+				<salt-source ref="saltSource" />
+			</password-encoder>
+		</authentication-provider>
 	</authentication-manager>
 
 	<!-- Ch 4 In-memory HSQLDB -->

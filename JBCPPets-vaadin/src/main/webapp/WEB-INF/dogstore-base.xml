@@ -24,10 +24,30 @@
 		<property name="cookieName" value="REMEMBER_ME" />
 	</bean>
 
+	<bean
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"
+		id="passwordEncoder" />
+
+	<bean
+		class="org.springframework.security.authentication.dao.ReflectionSaltSource"
+		id="saltSource">
+		<property name="userPropertyToUse" value="username" />
+	</bean>
+
+	<bean
+		class="com.packtpub.springsecurity.security.DatabasePasswordSecurerBean"
+		init-method="secureDatabase" depends-on="dataSource">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
 	<bean id="jdbcUserService" class="com.packtpub.springsecurity.security.CustomJdbcDaoImpl">
 		<property name="dataSource" ref="dataSource" />
 		<property name="enableGroups" value="true" />
 		<property name="enableAuthorities" value="false" />
+		<property name="usersByUsernameQuery">
+			<value>select username,password,enabled,salt from users where
+				username = ?</value>
+		</property>
 	</bean>
 
 	<context:annotation-config />
