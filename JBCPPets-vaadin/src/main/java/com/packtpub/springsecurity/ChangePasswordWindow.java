@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -67,30 +68,39 @@ public class ChangePasswordWindow extends Window {
 				if (principal instanceof UserDetails) {
 					username = ((UserDetails) principal).getUsername();
 				}
-//				String oldPassword = changePasswordView.getOldPasswordValue();
+				// String oldPassword =
+				// changePasswordView.getOldPasswordValue();
 
 				String newPassword = changePasswordView.getNewPasswordValue();
 				log.trace("New password: {}", newPassword);
 
 				// TODO: dodati obradu iznimke ako stara lozinka ne odgovara
-				userDetailsManager.changePassword(username, newPassword);
-				SecurityContextHolder.clearContext();
+				try {
+					userDetailsManager.changePassword(username, newPassword);
 
-				// TODO: ovo bih zamijenio s getApplication().init;
-				log.trace("Logout");
-				/*
-				 * Ovime se zatvara aplikacija (aplikacija se uklanja iz
-				 * sessiona) te se browser preusmjerava na logout URL. Logout
-				 * URL koristi stantardni Spring Secirity link
-				 * /j_spring_security_logout, ali pošto mora biti u kontekstu
-				 * aplikacije, morali smo preko getURL metode dobiti ime
-				 * aplikacije
-				 */
-				URL url = getApplication().getURL();
-				String logoutURL = url.getPath() + "logout";
+					SecurityContextHolder.clearContext();
 
-				getApplication().setLogoutURL(logoutURL);
-				getApplication().close();
+					// TODO: ovo bih zamijenio s getApplication().init;
+					log.trace("Logout");
+					/*
+					 * Ovime se zatvara aplikacija (aplikacija se uklanja iz
+					 * sessiona) te se browser preusmjerava na logout URL.
+					 * Logout URL koristi stantardni Spring Secirity link
+					 * /j_spring_security_logout, ali pošto mora biti u
+					 * kontekstu aplikacije, morali smo preko getURL metode
+					 * dobiti ime aplikacije
+					 */
+					URL url = getApplication().getURL();
+					String logoutURL = url.getPath() + "logout";
+
+					getApplication().setLogoutURL(logoutURL);
+					getApplication().close();
+				} catch (AccessDeniedException e) {
+					showNotification("Access Denied",
+							"You don't have suficiente privilage",
+							Notification.TYPE_ERROR_MESSAGE);
+				}
+
 			}
 		});
 
