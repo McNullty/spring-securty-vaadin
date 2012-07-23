@@ -1,5 +1,6 @@
 package com.packtpub.springsecurity.security;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -16,6 +17,7 @@ public interface IChangePassword extends UserDetailsService {
 	 * @param username the username
 	 * @param password the new password
 	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	void changePassword(String username, String password);
 
 }

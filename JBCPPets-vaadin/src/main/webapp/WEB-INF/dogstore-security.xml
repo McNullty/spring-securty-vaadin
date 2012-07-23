@@ -31,12 +31,14 @@
 		<!-- Omogućava postavljanje checkboxa remeber me, Key mora biti unique 
 			za aplikaciju i zapisati će se u cookie. Uz ime aplikacije u key bi se trebalo 
 			dodati 36 random znakova -->
-		<remember-me key="jbcpPetStore-vaadin" services-ref="ipTokenBasedRememberMeServicesBean"
-			token-validity-seconds="3600" data-source-ref="dataSource" />
+		<remember-me key="jbcpPetStore-vaadin" token-validity-seconds="3600" data-source-ref="dataSource" />
 	</http>
 
 	<!-- Spring Security debuging logs -->
 	<!-- <debug/> -->
+	
+	<!-- Omogućava postavljanje anotacija PreAuthorize i PostAuthorize -->
+	<global-method-security pre-post-annotations="enabled"/>
 
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="jdbcUserService">
