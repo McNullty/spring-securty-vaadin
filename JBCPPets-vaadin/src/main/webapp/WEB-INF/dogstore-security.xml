@@ -51,6 +51,6 @@
 		<!-- Inicijalizacija data sourcea -->
 		<jdbc:script location="classpath:sql-scripts/security-schema.sql" />
 		<jdbc:script location="classpath:sql-scripts/test-users-groups-data.sql" />
-		<jdbc:script location="remember-me-schema.sql" />
+		<jdbc:script location="classpath:sql-scripts/remember-me-schema.sql" />
 	</jdbc:embedded-database>
 </beans:beans>
