@@ -44,8 +44,11 @@ public class JBCPPets extends Application {
 	@Override
 	public void init() {
 		log.trace("Initializing Home page...");
-
-		setMainWindow(homeWindow);
+		
+		addWindow(getHomeWindow());
+		addWindow(getChangePasswordWindow());
+		
+		setMainWindow(getHomeWindow());
 
 		log.trace("Initialied Home page");
 	}

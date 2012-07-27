@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.vaadin.terminal.ExternalResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
@@ -61,8 +62,8 @@ public class HomeWindow extends Window {
 				log.trace("Change Password Window event");
 				Window changePasswordWindow = ((JBCPPets)getApplication()).getChangePasswordWindow();
 				
-				getApplication().setMainWindow(changePasswordWindow);
-				getApplication().removeWindow(HomeWindow.this);
+				log.trace("Change Password URL: {}", changePasswordWindow.getURL());
+				open(new ExternalResource(changePasswordWindow.getURL()));
 			}
 		});
 		

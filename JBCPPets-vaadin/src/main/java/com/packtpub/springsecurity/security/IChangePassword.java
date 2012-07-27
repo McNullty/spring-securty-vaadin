@@ -19,6 +19,10 @@ public interface IChangePassword extends UserDetailsService {
 	 * @param password
 	 *            the new password
 	 */
+	// #username se odnosi na parametar iz metode
+	// da bi se moglo pristuparti varijablama pomoću #username pri maven
+	// kompajliranju treba postaviti maven.compiler.debug=on (što je defaultna
+	// vrijednost) ili pri javac flag -g
 	@PreAuthorize("#username == principal.username and hasRole('ROLE_USER')")
 	void changePassword(String username, String password);
 

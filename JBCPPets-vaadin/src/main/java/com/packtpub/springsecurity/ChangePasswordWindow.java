@@ -36,6 +36,8 @@ public class ChangePasswordWindow extends Window {
 		log.trace("Initialazing Change Password Window");
 
 		setSizeFull();
+		
+		setName("changePassword");
 		setDebugId("Change Password Window");
 
 		setContent(changePasswordView);
