@@ -40,6 +40,9 @@ public class JBCPPets extends Application {
 
 	@Autowired
 	private ChangePasswordWindow changePasswordWindow;
+	
+	@Autowired
+	private RegisterWindow registerWindow;
 
 	@Override
 	public void init() {
@@ -47,6 +50,7 @@ public class JBCPPets extends Application {
 		
 		addWindow(getHomeWindow());
 		addWindow(getChangePasswordWindow());
+		addWindow(getRegisterWindow());
 		
 		setMainWindow(getHomeWindow());
 
@@ -59,6 +63,10 @@ public class JBCPPets extends Application {
 
 	public Window getChangePasswordWindow() {
 		return changePasswordWindow;
+	}
+
+	public Window getRegisterWindow() {
+		return registerWindow;
 	}
 
 }

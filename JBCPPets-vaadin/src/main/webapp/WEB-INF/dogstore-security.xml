@@ -17,7 +17,12 @@
 			be applied. Typically, this means that your authorization rules will be ordered 
 			starting from most-specific to least-specific order. -->
 		<intercept-url pattern="/login*" access="permitAll" />
-		<intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/register*" access="permitAll" />
+		<intercept-url pattern="/VAADIN/**" access="permitAll" />
+		<intercept-url pattern="/styles/**" access="permitAll" />		
+		<intercept-url pattern="/UIDL*" access="permitAll" />
+		
+		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 
 		<form-login login-page="/login" />
 
