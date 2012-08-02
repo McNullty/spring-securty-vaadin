@@ -17,5 +17,6 @@ public class RegisterWindow extends Window {
 		setName("register");
 		
 		addComponent(new Label("Register"));
+		//TODO: Dodati pravi View
 	}
 }
