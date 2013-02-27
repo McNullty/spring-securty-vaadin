@@ -40,30 +40,6 @@
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>test-compile</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<aspectLibraries>
-						<aspectLibrary>
-							<groupId>org.springframework</groupId>
-							<artifactId>org.springframework.aspects</artifactId>
-						</aspectLibrary>
-					</aspectLibraries>
-					<source>1.6</source>
-					<target>1.6</target>
-					<encoding>ISO-8859-1</encoding>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
