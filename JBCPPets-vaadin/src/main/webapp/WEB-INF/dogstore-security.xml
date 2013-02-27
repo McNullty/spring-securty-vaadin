@@ -16,15 +16,15 @@
 			rules in top to bottom order. The first rule matching the URL pattern will 
 			be applied. Typically, this means that your authorization rules will be ordered 
 			starting from most-specific to least-specific order. -->
-		<intercept-url pattern="/login*" access="permitAll" />
-		<intercept-url pattern="/register*" access="permitAll" />
-		<intercept-url pattern="/VAADIN/**" access="permitAll" />
-		<intercept-url pattern="/styles/**" access="permitAll" />		
-		<intercept-url pattern="/UIDL*" access="permitAll" />
+<!-- 		<intercept-url pattern="/login*" access="permitAll" /> -->
+<!-- 		<intercept-url pattern="/register*" access="permitAll" /> -->
+<!-- 		<intercept-url pattern="/VAADIN/**" access="permitAll" /> -->
+<!-- 		<intercept-url pattern="/styles/**" access="permitAll" />		 -->
+<!-- 		<intercept-url pattern="/UIDL*" access="permitAll" /> -->
 		
-		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+<!-- 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" /> -->
 
-		<form-login login-page="/login" />
+<!-- 		<form-login login-page="/login" /> -->
 
 		<!-- Postavljanje Logout konfikuracije -->
 		<!-- invalidate-session="false" se treba koristiti ako želimo zadržati 

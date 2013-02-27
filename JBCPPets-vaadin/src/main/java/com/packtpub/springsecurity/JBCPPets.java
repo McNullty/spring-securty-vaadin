@@ -19,6 +19,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.vaadin.Application;
@@ -43,18 +45,32 @@ public class JBCPPets extends Application {
 	
 	@Autowired
 	private RegisterWindow registerWindow;
+	
+	@Autowired
+	private LoginWindow loginWindow;
 
 	@Override
 	public void init() {
 		log.trace("Initializing Home page...");
 		
+		Object o = SecurityContextHolder.getContext().getAuthentication(); 
+		
 		addWindow(getHomeWindow());
 		addWindow(getChangePasswordWindow());
 		addWindow(getRegisterWindow());
+		addWindow(getLoginWindow());
 		
-		setMainWindow(getHomeWindow());
+		if(o instanceof AnonymousAuthenticationToken){ 
+			setMainWindow(getLoginWindow());
+		}else{
+			setMainWindow(getHomeWindow());
+		}
 
 		log.trace("Initialied Home page");
+	}
+
+	private Window getLoginWindow() {
+		return loginWindow;
 	}
 
 	public Window getHomeWindow() {

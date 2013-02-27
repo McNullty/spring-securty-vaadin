@@ -17,8 +17,6 @@ import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
-;
-
 @Configurable(preConstruction = true)
 @Component
 public class ChangePasswordWindow extends Window {
