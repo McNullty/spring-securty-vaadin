@@ -14,7 +14,7 @@
 		<gwt-version>2.3.0</gwt-version>
 		<gwt-plugin-version>2.2.0</gwt-plugin-version>
 		<spring-version>3.1.1.RELEASE</spring-version>
-		<spring-security-version>3.1.0.RELEASE</spring-security-version>
+		<spring-security-version>5.2.10.RELEASE</spring-security-version>
 		<slf4j-version>1.6.4</slf4j-version>
 		<logback-version>1.0.3</logback-version>
 		<aspectj.version>1.6.12.RELEASE</aspectj.version>
