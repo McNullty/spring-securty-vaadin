@@ -16,7 +16,7 @@
 		<spring-version>3.1.1.RELEASE</spring-version>
 		<spring-security-version>3.1.0.RELEASE</spring-security-version>
 		<slf4j-version>1.6.4</slf4j-version>
-		<logback-version>1.0.3</logback-version>
+		<logback-version>1.2.0</logback-version>
 		<aspectj.version>1.6.12.RELEASE</aspectj.version>
 	</properties>
 
